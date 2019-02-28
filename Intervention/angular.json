@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "stk",
+      "prefix": "Inter",
       "schematics": {},
       "architect": {
         "build": {

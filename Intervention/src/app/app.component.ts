@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'stk-root',
+  selector: 'Inter-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
