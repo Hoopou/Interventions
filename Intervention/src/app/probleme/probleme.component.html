@@ -8,12 +8,36 @@
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+
+      <div class="card-text">
+        <form class="form-horizontal" novalidate (ngSubmit)="save()" [formGroup]="problemeForm">
+          <div class="form-group row">
+            <label for="nomProbleme1" class="col-sm-2 col-form-label text-right"></label>
+              <!-- <input type="email" class="form-control" id="nomProbleme" placeholder="Nom du problème"> -->
+              <input class="form-control"
+              id="nomProbleme1"
+              type="text"
+              placeholder="Votre prénom ici (obligatoire)"
+              formControlName="nomProbleme"
+              [ngClass]="{'is-valid': (problemeForm.get('nomProbleme').touched ||
+              problemeForm.get('nomProbleme').dirty) &&
+              (problemeForm.get('nomProbleme').valid),
+              'is-invalid': (problemeForm.get('nomProbleme').touched ||
+              problemeForm.get('nomProbleme').dirty) &&
+              (!problemeForm.get('nomProbleme').valid )}"/>
+          </div>
+
+        </form>
+      </div>
+
+
     </div>
-    <div class="card-footer">
-      <!-- Bouton save avec l'icone ici -->
-      <button type="button" class="btn btn-primary btn-lg">
-        <i class="fa fa-save"></i> Large Button
-      </button>
-    </div>
+  </div>
+  <div class="card-footer">
+    <!-- Bouton save avec l'icone ici -->
+    <button type="button" class="btn btn-primary btn-lg">
+      <i class="fa fa-save"></i> Large Button
+    </button>
   </div>
 </div>
