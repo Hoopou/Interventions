@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'stk-probleme',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./probleme.component.css']
 })
 export class ProblemeComponent implements OnInit {
+  problemeForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.problemeForm = this.fb.group({
+      nomProbleme: ['' , [Validators.minLength(3)]]
+    });
   }
 
 }

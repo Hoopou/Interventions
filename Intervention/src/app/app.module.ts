@@ -13,12 +13,12 @@ import { ProblemeComponent } from './probleme/probleme.component';
     AppComponent,
     BienvenueComponent,
     AccueilComponent,
-    ProblemeComponent
+    ProblemeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
