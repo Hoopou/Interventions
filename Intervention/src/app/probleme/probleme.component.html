@@ -26,8 +26,16 @@
               'is-invalid': (problemeForm.get('nomProbleme').touched ||
               problemeForm.get('nomProbleme').dirty) &&
               (!problemeForm.get('nomProbleme').valid )}"/>
+              <span class="form-text" *ngIf="problemeForm.get('nomProbleme').touched || 
+                            problemeForm.get('nomProbleme').dirty &&
+                            problemeForm.get('nomProbleme').errors">
+                <span *ngIf="problemeForm.get('nomProbleme').errors.minlength">
+                    <small class="text-muted">
+                      Veuillez entrer aumoins 3 caractères
+                    </small>
+                </span>
+              </span>
           </div>
-
         </form>
       </div>
 
