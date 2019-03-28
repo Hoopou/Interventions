@@ -75,18 +75,26 @@
           </div>
           <!-- #endregion -->
 
-
-          
+          <!-- #region type de probleme -->
+          <div class="form-group row">
+            <label for="typeProblemeId" class="col-sm -2 col-form-label text-right">Type de problème</label>
+            <!-- <input type="email" class="form-control" id="nomProbleme" placeholder="Nom du problème"> -->
+            <div class="col-sm-10">
+              <select class="form-control" id="typeProblemeId" formControlName="typeProbleme">
+                <option value=''>Merci de selectionner un type de problème.</option>
+                <option *ngFor="let cat of categoriesProbleme" [value]='cat.id'>{{cat.problemeDescription}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- #endregion -->
         </form>
       </div>
-
-
     </div>
-  </div>
-  <div class="card-footer">
-    <!-- Bouton save avec l'icone ici -->
-    <button type="button" class="btn btn-primary btn-lg">
-      <i class="fa fa-save"></i> Large Button
-    </button>
+    <div class="card-footer">
+      <!-- Bouton save avec l'icone ici -->
+      <button type="button" class="btn btn-primary btn-lg">
+        <i class="fa fa-save"></i> Large Button
+      </button>
+    </div>
   </div>
 </div>
