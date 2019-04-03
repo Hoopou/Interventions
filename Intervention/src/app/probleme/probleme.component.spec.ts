@@ -4,6 +4,7 @@ import { ProblemeComponent } from './probleme.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategorieProbleme } from './probleme-data';
 import { HttpClientModule } from '@angular/common/http';
+import { DISABLED } from '@angular/forms/src/model';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
@@ -59,11 +60,45 @@ describe('ProblemeComponent', () => {
   //   expect(zone.valid).toBeTruthy();
   // })
 
-  it('champ prénom du problème doit etre valide avec 2 espaces et caracteres' , () =>{
-    
+  it('zone courriel, telephone et confirmation courriel désactivé si ne pas notifier ' , () =>{
+      component.gestionNotification('nePasNotifier');
+      let testCourrielGroup = component.problemeForm.get('courrielGroup');
+      let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+      let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+      let testMessagerieTexte = component.problemeForm.get('telephone');
+      expect(
+        testCourrielGroup.status === 'DISABLED' && 
+        testCourriel.status === 'DISABLED' && 
+        testCourrielConfirmation.status === 'DISABLED' &&
+        testMessagerieTexte.status === 'DISABLED'
+        ).toBe(true);
   })
 
+  it('zone courrielGroup, couriel et courriel confirmation activer si notification est par courriel' , () =>{
+    component.gestionNotification('parCourriel');
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    expect(
+      testCourrielGroup.status !== 'DISABLED' && 
+      testCourriel.status !== 'DISABLED' && 
+      testCourrielConfirmation.status !== 'DISABLED' &&
+      testMessagerieTexte.status === 'DISABLED'
+      ).toBe(true);
+  })
 
-
-
+  it('zone telephone active si notification par message texte' , () =>{
+    component.gestionNotification('parMessageTexte');
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    expect(
+      testCourrielGroup.status === 'DISABLED' && 
+      testCourriel.status === 'DISABLED' && 
+      testCourrielConfirmation.status === 'DISABLED' &&
+      testMessagerieTexte.status !== 'DISABLED'
+      ).toBe(true);
+  })
 });
