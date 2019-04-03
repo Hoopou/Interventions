@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ZonesValidator } from '../shared/longeur-minimum/longeur-minimum.component';
 import { ICategorie } from './probleme';
 import { CategorieService } from './categorie.service';
+import { emailMatcherValidator} from '../shared/courrielValidation/courrielValidation.component';
 
 @Component({
   selector: 'stk-probleme',
@@ -54,13 +55,13 @@ export class ProblemeComponent implements OnInit {
     telephoneControl.clearValidators();
     telephoneControl.reset();
     telephoneControl.disable();
-
+    
     if (typeNotification === 'nePasNotifier') {
 
     }
     else {
       if (typeNotification === 'parCourriel') {
-        courrielGroupControl.setValidators([Validators.required]);              
+        courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()]), Validators.required]);               
         courrielGroupControl.enable();  
         courrielControl.setValidators([Validators.required]);      
         courrielControl.enable();  
@@ -68,13 +69,12 @@ export class ProblemeComponent implements OnInit {
         courrielConfirmationControl.enable();  
         // Si le validateur est dans un autre fichier l'écire sous la forme suivante : 
         // ...Validators.compose([classeDuValidateur.NomDeLaMethode()])])
-
-        //datesGroupControl.setValidators([Validators.compose([datesValides])]);   
+        
       }else
         if(typeNotification === 'parMessageTexte'){
           telephoneControl.setValidators([Validators.required]);
           telephoneControl.enable();
-          telephoneControl.setValidators([]);
+          // telephoneControl.setValidators([]);
         }
     }
     courrielGroupControl.updateValueAndValidity();

@@ -96,7 +96,7 @@ describe('Zone Validator', () => {
         let validator = ZonesValidator.longueurMaximum(50);
         let control = { value: ''.repeat(3) };
         let result = validator(control as AbstractControl);
-        console.trace(result.error);
+        // console.trace(result.error);
         expect(result).toBeTruthy();
     });
     /* #endregion */

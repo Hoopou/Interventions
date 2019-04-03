@@ -4,7 +4,7 @@ import { ProblemeComponent } from './probleme.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategorieProbleme } from './probleme-data';
 import { HttpClientModule } from '@angular/common/http';
-import { DISABLED } from '@angular/forms/src/model';
+import { DISABLED, AbstractControl } from '@angular/forms/src/model';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
@@ -100,5 +100,36 @@ describe('ProblemeComponent', () => {
       testCourrielConfirmation.status === 'DISABLED' &&
       testMessagerieTexte.status !== 'DISABLED'
       ).toBe(true);
+  })
+
+  it('zone telephone active si notification par message texte' , () =>{
+    component.gestionNotification('parMessageTexte');
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    expect(
+      testCourrielGroup.status === 'DISABLED' && 
+      testCourriel.status === 'DISABLED' && 
+      testCourrielConfirmation.status === 'DISABLED' &&
+      testMessagerieTexte.status !== 'DISABLED'
+      ).toBe(true);
+  })
+
+  it(' Zones ADRESSE COURRIEL et CONFIRMER COURRIEL sont invalides si les valeurs sont différentes quand notifier par courriel ' , () =>{
+    component.gestionNotification('parCourriel');
+    let errors = {};
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    
+    
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    
+    testCourriel.setValue("allo");
+    testCourrielConfirmation.setValue("allo");
+    errors = testCourrielGroup.errors || {};
+    console.trace(errors);
+    expect(errors['CourrielsDifferents']).toBeUndefined();
   })
 });
