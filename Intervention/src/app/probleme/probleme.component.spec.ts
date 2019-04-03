@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProblemeComponent } from './probleme.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CategorieProbleme } from './probleme-data';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
@@ -9,8 +11,9 @@ describe('ProblemeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [ ProblemeComponent ]
+      imports: [ReactiveFormsModule, HttpClientModule],
+      declarations: [ ProblemeComponent ],
+      providers:[CategorieProbleme]
     })
     .compileComponents();
   }));
@@ -55,4 +58,12 @@ describe('ProblemeComponent', () => {
   //   zone.setValue('  a')
   //   expect(zone.valid).toBeTruthy();
   // })
+
+  it('champ prénom du problème doit etre valide avec 2 espaces et caracteres' , () =>{
+    
+  })
+
+
+
+
 });

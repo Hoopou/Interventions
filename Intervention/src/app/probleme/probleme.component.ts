@@ -19,7 +19,13 @@ export class ProblemeComponent implements OnInit {
     this.problemeForm = this.fb.group({
       prenom: ['' , [ZonesValidator.longueurMinimum(3), Validators.required]],
       nom: ['' , [ZonesValidator.longueurMaximum(50), Validators.required]],
-      typeProbleme: ['']
+      typeProbleme: [''],
+      notification: ['NePasNotifier'],
+      notificationGroup: this.fb.group({
+        telephone: [{value:'' , disable: true}],
+        courriel: [{value: '' , disable: true}],
+        confirmationCourriel: [{value: '' , disable:true}]
+      })
     });
 
     this.categories.obtenirCategories()

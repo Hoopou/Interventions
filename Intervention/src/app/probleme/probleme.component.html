@@ -15,9 +15,9 @@
 
           <!-- #region prénom -->
           <div class="form-group row">
-            <label for="prenomId" class="col-sm -2 col-form-label text-right">Prénom</label>
+            <label for="prenomId" class="col-sm-2 col-form-label text-right">Prénom</label>
             <!-- <input type="email" class="form-control" id="nomProbleme" placeholder="Nom du problème"> -->
-            <div class="col-md-11">
+            <div class="col-md-10">
               <input class="form-control" id="prenomId" type="text" placeholder="Votre prénom ici (obligatoire)"
                 formControlName="prenom" [ngClass]="{'is-valid': (problemeForm.get('prenom').touched ||
                 problemeForm.get('prenom').dirty) &&
@@ -46,9 +46,9 @@
 
           <!-- #region nom de famille -->
           <div class="form-group row">
-            <label for="nomId" class="col-sm -2 col-form-label text-right">Nom</label>
+            <label for="nomId" class="col-sm-2 col-form-label text-right">Nom</label>
             <!-- <input type="email" class="form-control" id="nomProbleme" placeholder="Nom du problème"> -->
-            <div class="col-md-11">
+            <div class="col-md-10">
               <input class="form-control" id="nomId" type="text" placeholder="Votre nom ici (obligatoire)"
                 formControlName="nom" [ngClass]="{'is-valid': (problemeForm.get('nom').touched ||
                   problemeForm.get('nom').dirty) &&
@@ -87,6 +87,9 @@
             </div>
           </div>
           <!-- #endregion -->
+
+          
+
         </form>
       </div>
     </div>

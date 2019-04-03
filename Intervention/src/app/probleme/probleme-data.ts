@@ -1,11 +1,11 @@
 import {ICategorie} from "./probleme";
 import {InMemoryDbService} from "angular-in-memory-web-api";
 
-export  class CategorieProbleme implements InMemoryDbService, InMemoryBackendConfig{
+export  class CategorieProbleme implements InMemoryDbService{
     createDb() {
         let categorie: ICategorie[] = [
             {
-                'id': 1,
+                'id': 1 ,
                 'problemeDescription': 'Problème avec la souris'
             },
             {
