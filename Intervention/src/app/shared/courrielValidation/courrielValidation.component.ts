@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn, PatternValidator } from '@angular/forms';
 
 export class emailMatcherValidator {
     static courrielDifferents(): ValidatorFn {

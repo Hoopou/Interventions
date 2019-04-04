@@ -127,9 +127,73 @@ describe('ProblemeComponent', () => {
     let testCourrielGroup = component.problemeForm.get('courrielGroup');
     
     testCourriel.setValue("allo");
-    testCourrielConfirmation.setValue("allo");
+    testCourrielConfirmation.setValue("allow");
     errors = testCourrielGroup.errors || {};
     console.trace(errors);
-    expect(errors['CourrielsDifferents']).toBeUndefined();
+    expect(errors['CourrielsDifferents']).toBeTruthy();
   })
+
+  it(' Zone TELEPHONE est invalide avec des caractères non-numériques quand notifier par messagerie texte ' , () =>{
+    component.gestionNotification('parMessageTexte');
+    let errors = {};
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    
+    
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    
+    testMessagerieTexte.setValue("atbs");
+    errors = testMessagerieTexte.errors || {};
+    console.trace(errors);
+    expect(testMessagerieTexte.status === "VALID").toBeFalsy();
+  })
+
+  it('  Zone TELEPHONE est invalide avec 9 chiffres consécutifs quand notifier par messagerie texte  ' , () =>{
+    component.gestionNotification('parMessageTexte');
+    let errors = {};
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    
+    
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    
+    testMessagerieTexte.setValue("111111111");
+    errors = testMessagerieTexte.errors || {};
+    console.trace(errors);
+    expect(testMessagerieTexte.status === "VALID").toBeFalsy();
+  })
+
+  it(' Zone TELEPHONE est valide avec 10 chiffres consécutifs quand notifier par messagerie texte' , () =>{
+    component.gestionNotification('parMessageTexte');
+    let errors = {};
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    
+    
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    
+    testMessagerieTexte.setValue("1111111111");
+    errors = testMessagerieTexte.errors || {};
+    console.trace(errors);
+    expect(testMessagerieTexte.status === "VALID").toBeTruthy();
+  })
+
+  it('  Zone TELEPHONE est invalide sans valeur quand notifier par messagerie texte ' , () =>{
+    component.gestionNotification('parMessageTexte');
+    let errors = {};
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');    
+    
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    
+    testMessagerieTexte.setValue("");
+    errors = testMessagerieTexte.errors || {};
+    console.trace(errors);
+    expect(testMessagerieTexte.status === "VALID").toBeFalsy();
+  })
+
 });
