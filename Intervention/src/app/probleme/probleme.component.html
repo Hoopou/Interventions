@@ -6,8 +6,7 @@
       <p>Déclarer un problème</p>
     </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">Veuillez renseigner les zones suivante et soumettre votre demande</h5>
 
 
       <div class="card-text">
@@ -88,15 +87,134 @@
           </div>
           <!-- #endregion -->
 
+          <!-- #region Notifications -->
+          <div class="form-group col-sm-10">
+            <!-- <label for="notification" class="col-sm-2 col-form-label text-right"></label> -->
+            <label for="typeNotification" class="col-sm-6 col-form-label text-right">Notifiez-moi pour le status de ma demande:</label>
+            <!-- #region Radio buttons -->
+            <div class="col-sm-10">
+              <label for="typeNotification" class="col-sm-2 col-form-label text-right"></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" id="nePasNotifierID" type="radio" value="nePasNotifier" formControlName="typeNotification" checked>
+                <label class="form-check-label" for="nePasNotifierID">Ne pas me notifier</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" id="parCourrielID" type="radio" value="parCourriel" formControlName="typeNotification">
+                <label class="form-check-label" for="parCourrielID">Par courriel</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" id="parMessageTexteID" type="radio" value="parMessageTexte" formControlName="typeNotification">
+                <label class="form-check-label" for="parMessageTexteID">Par message texte</label>
+              </div>
+              <!-- #endregion -->
+            </div>
+          </div>
+          <!-- #endregion -->
           
+          <!-- #region telephone -->
+          <div class="form-group row">
+            <label for="telephone" class="col-sm-2 col-form-label text-right">Téléphone (SMS):</label>
+            <div class="col-md-10">
+              <input class="form-control" id="telephoneId" type="text" placeholder="Votre téléphone ici"
+                formControlName="telephone" [ngClass]="{'is-valid': (problemeForm.get('telephone').touched ||
+                            problemeForm.get('telephone').dirty) &&
+                            (problemeForm.get('telephone').valid),
+                            'is-invalid': (problemeForm.get('telephone').touched ||
+                          problemeForm.get('telephone').dirty) &&
+                          (!problemeForm.get('telephone').valid )}" />
+              <!-- Pour l'affichage des mesages d'erreurs -->
+              <span class="form-text" *ngIf="(problemeForm.get('telephone').touched || 
+                                      problemeForm.get('telephone').dirty)">
+                <span *ngIf="problemeForm.get('telephone').errors?.pattern">
+                  <small class="text-muted">
+                    Merci d'entrer seulement des chiffres.
+                  </small>
+                </span>
+                <span *ngIf="problemeForm.get('telephone').errors?.required">
+                  <small class="text-muted">
+                    Merci de saisir votre numéro de téléphone.
+                  </small>
+                </span>
+                <span *ngIf="problemeForm.get('telephone').errors?.minlength && !problemeForm.get('telephone').errors?.pattern">
+                  <small class="text-muted">
+                    Veuillez entrer plus de caractères.
+                  </small>
+                </span>
+                <span *ngIf="problemeForm.get('telephone').errors?.maxlength && !problemeForm.get('telephone').errors?.pattern">
+                  <small class="text-muted">
+                    Veuillez entrer moins de caractères.
+                  </small>
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- #endregion -->
+
+          <!-- #region courriel -->
+          <div class="form-group row" formGroupName='courrielGroup'>
+            <label for="courriel" class="col-sm-2 col-form-label text-right">Adresse courriel:</label>
+            <div class="col-md-10">
+              <input class="form-control" id="courrielID" type="text" placeholder="Courriel (obligatoire si notification par courriel)" formControlName="courriel"
+                [ngClass]="{'is-valid': (problemeForm.get('courrielGroup.courriel').touched ||
+                problemeForm.get('courrielGroup.courriel').dirty) &&
+                (problemeForm.get('courrielGroup.courriel').valid),
+                'is-invalid': (problemeForm.get('courrielGroup.courriel').touched ||
+              problemeForm.get('courrielGroup.courriel').dirty) &&
+              (!problemeForm.get('courrielGroup.courriel').valid )}"/>
+              <!-- Pour l'affichage des mesages d'erreurs -->
+              <span class="form-text" *ngIf="(problemeForm.get('courrielGroup.courriel').touched || 
+                problemeForm.get('courrielGroup.courriel').dirty)">
+                <span *ngIf="problemeForm.get('courrielGroup.courriel').errors?.pattern">
+                  <small class="text-muted">
+                    S.V.P entrer les informations dans un format valide.
+                  </small>
+                </span>     
+                <span *ngIf="problemeForm.get('courrielGroup.courriel').errors?.required">
+                    <small class="text-muted">
+                      Merci d'entrer votre adresse courriel.
+                    </small>
+                  </span>             
+              </span>
+            </div>
+          </div>
+          <!-- #endregion -->
+          
+          <!-- #region courriel de confirmation -->
+          <div class="form-group row" formGroupName='courrielGroup'>
+            <label for="courrielConfirmation" class="col-sm-2 col-form-label text-right">Confirmer courriel</label>
+            <div class="col-md-10">
+              <input class="form-control" id="courrielConfirmationId" type="text" placeholder="Entrez à nouveau le courriel (obligatoire si notification par courriel)" formControlName="courrielConfirmation" 
+              [ngClass]="{'is-valid': (problemeForm.get('courrielGroup.courrielConfirmation').touched ||
+                problemeForm.get('courrielGroup.courrielConfirmation').dirty) &&
+                (problemeForm.get('courrielGroup.courrielConfirmation').valid),
+                'is-invalid': (problemeForm.get('courrielGroup.courrielConfirmation').touched ||
+              problemeForm.get('courrielGroup.courrielConfirmation').dirty) &&
+              (!problemeForm.get('courrielGroup.courrielConfirmation').valid) || problemeForm.get('courrielGroup').errors}" />
+              <span class="form-text" *ngIf="(problemeForm.get('courrielGroup.courrielConfirmation').touched || 
+                problemeForm.get('courrielGroup.courrielConfirmation').dirty)">
+                <span *ngIf="problemeForm.get('courrielGroup').errors?.CourrielsDifferents">
+                  <small class="text-muted">
+                    Le courriel de confirmation n'est pas le même que le courriel. Le corriger.
+                  </small>
+                </span>     
+                <span *ngIf="problemeForm.get('courrielGroup.courrielConfirmation').errors?.required">
+                    <small class="text-muted">
+                      Confirmex votre addresse courriel (la réécrire).
+                    </small>
+                  </span>             
+              </span>
+            </div>
+          </div>
+          <!-- #endregion -->
+
 
         </form>
       </div>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" [formGroup]="problemeForm">
       <!-- Bouton save avec l'icone ici -->
-      <button type="button" class="btn btn-primary btn-lg">
-        <i class="fa fa-save"></i> Large Button
+      <button type="button" class="btn btn-primary btn-lg" formControlName="isFormulaireValide">
+        <i class="fa fa-save"></i> VALIDER
       </button>
     </div>
   </div>

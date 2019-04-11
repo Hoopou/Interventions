@@ -126,11 +126,26 @@ describe('ProblemeComponent', () => {
     
     let testCourrielGroup = component.problemeForm.get('courrielGroup');
     
-    testCourriel.setValue("allo");
-    testCourrielConfirmation.setValue("allow");
+    testCourriel.setValue("vincent@live.ca");
+    testCourrielConfirmation.setValue("vincentboutot@live.ca");
     errors = testCourrielGroup.errors || {};
-    console.trace(errors);
     expect(errors['CourrielsDifferents']).toBeTruthy();
+  })
+
+  it(' Zones ADRESSE COURRIEL et CONFIRMER COURRIEL sont valide si les valeurs sont pareils quand notifier par courriel ' , () =>{
+    component.gestionNotification('parCourriel');
+    let errors = {};
+    let testCourriel = component.problemeForm.get('courrielGroup.courriel');
+    let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    let testMessagerieTexte = component.problemeForm.get('telephone');
+    
+    
+    let testCourrielGroup = component.problemeForm.get('courrielGroup');
+    
+    testCourriel.setValue("vincent@live.ca");
+    testCourrielConfirmation.setValue("vincent@live.ca");
+    errors = testCourrielGroup.errors || {};
+    expect(errors['CourrielsDifferents']).toBeUndefined();
   })
 
   it(' Zone TELEPHONE est invalide avec des caractères non-numériques quand notifier par messagerie texte ' , () =>{
