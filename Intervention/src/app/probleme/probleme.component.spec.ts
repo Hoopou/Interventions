@@ -1,29 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProblemeComponent } from './probleme.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CategorieProbleme } from './probleme-data';
-import { HttpClientModule } from '@angular/common/http';
-import { DISABLED, AbstractControl } from '@angular/forms/src/model';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
   let fixture: ComponentFixture<ProblemeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientModule],
-      declarations: [ ProblemeComponent ],
-      providers:[CategorieProbleme]
-    })
-    .compileComponents();
-  }));
+  // beforeEach(async(() => {
+  //   TestBed.configureTestingModule({
+  //     imports: [ReactiveFormsModule, HttpClientModule],
+  //     declarations: [ ProblemeComponent ],
+  //     providers:[CategorieProbleme]
+  //   })
+  //   .compileComponents();
+  // }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProblemeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  //   fixture = TestBed.createComponent(ProblemeComponent);
+  //   component = fixture.componentInstance;
+  //   fixture.detectChanges();
+  // });
 
   // it('should create', () => {
   //   expect(component).toBeTruthy();
@@ -81,10 +77,10 @@ describe('ProblemeComponent', () => {
     let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');
     let testMessagerieTexte = component.problemeForm.get('telephone');
     expect(
-      testCourrielGroup.status !== 'DISABLED' && 
-      testCourriel.status !== 'DISABLED' && 
-      testCourrielConfirmation.status !== 'DISABLED' &&
-      testMessagerieTexte.status === 'DISABLED'
+      (testCourrielGroup.status === 'INVALID') && 
+      (testCourriel.status === 'INVALID') && 
+      (testCourrielConfirmation.status === 'INVALID') &&
+      (testMessagerieTexte.status === 'DISABLED')
       ).toBe(true);
   })
 

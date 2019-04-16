@@ -94,15 +94,15 @@
             <!-- #region Radio buttons -->
             <div class="col-sm-10">
               <label for="typeNotification" class="col-sm-2 col-form-label text-right"></label>
-              <div class="form-check form-check-inline">
+              <div class="form-group form-check-inline" >
                 <input class="form-check-input" id="nePasNotifierID" type="radio" value="nePasNotifier" formControlName="typeNotification" checked>
                 <label class="form-check-label" for="nePasNotifierID">Ne pas me notifier</label>
               </div>
-              <div class="form-check form-check-inline">
+              <div class="form-group form-check-inline">
                 <input class="form-check-input" id="parCourrielID" type="radio" value="parCourriel" formControlName="typeNotification">
                 <label class="form-check-label" for="parCourrielID">Par courriel</label>
               </div>
-              <div class="form-check form-check-inline">
+              <div class="form-group form-check-inline">
                 <input class="form-check-input" id="parMessageTexteID" type="radio" value="parMessageTexte" formControlName="typeNotification">
                 <label class="form-check-label" for="parMessageTexteID">Par message texte</label>
               </div>
@@ -268,7 +268,7 @@
       <div class="col-md-2"></div>
       <div class="col-md-10">
         <span>
-          <button class="btn btn-primary" type="submit" [disabled]="!problemeForm.valid">
+          <button class="btn btn-primary" type="submit" [disabled]="!problemeForm.valid" id="buttonValiderDeclarationProblemeId">
             <i class="fa fa-save"></i>
             &nbsp;&nbsp;Sauvegarder
           </button>
