@@ -9,7 +9,6 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ProblemeComponent } from './probleme/probleme.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { CategorieProbleme } from './probleme/probleme-data';
 
 @NgModule({
@@ -24,8 +23,7 @@ import { CategorieProbleme } from './probleme/probleme-data';
     AppRoutingModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule .forRoot(CategorieProbleme, {delay: 1000})
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

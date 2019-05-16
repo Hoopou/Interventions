@@ -1,4 +1,4 @@
-import {ICategorie} from "./probleme";
+import {ICategorie} from "./categorie";
 import {InMemoryDbService} from "angular-in-memory-web-api";
 
 export  class CategorieProbleme implements InMemoryDbService{
@@ -6,35 +6,35 @@ export  class CategorieProbleme implements InMemoryDbService{
         let categorie: ICategorie[] = [
             {
                 'id': 1 ,
-                'problemeDescription': 'Problème avec la souris'
+                'descriptionTypeProbleme': 'Problème avec la souris'
             },
             {
                 'id': 2,
-                'problemeDescription': 'Problème de clavier'
+                'descriptionTypeProbleme': 'Problème de clavier'
             },
             {
                 'id': 3,
-                'problemeDescription': 'Problème d\'accès Internet'
+                'descriptionTypeProbleme': 'Problème d\'accès Internet'
             },
             {
                 'id': 4,
-                'problemeDescription': 'Problème avec un logiciel'
+                'descriptionTypeProbleme': 'Problème avec un logiciel'
             },
             {
                 'id': 5,
-                'problemeDescription': 'Problème d\'imprimante'
+                'descriptionTypeProbleme': 'Problème d\'imprimante'
             },
             {
                 'id': 6,
-                'problemeDescription': 'Carte graphique'
+                'descriptionTypeProbleme': 'Carte graphique'
             },
             {
                 'id': 7,
-                'problemeDescription': 'Carte mère'
+                'descriptionTypeProbleme': 'Carte mère'
             },
             {
                 'id': 8,
-                'problemeDescription': 'Autre'
+                'descriptionTypeProbleme': 'Autre'
             }
         ];       
         //return { probleme, typesprobleme};

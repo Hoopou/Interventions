@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ICategorie } from './probleme';
+import { ICategorie } from './categorie';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class CategorieService {
 
-  private URLDonnees = 'api/categorie';
+  private URLDonnees = 'https://vincentboutotinterventionslb.azurewebsites.net/api/intervention';
   constructor(private http: HttpClient) { }
 
 obtenirCategories(): Observable<ICategorie[]> {

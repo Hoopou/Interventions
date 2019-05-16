@@ -5,7 +5,12 @@
       <!-- L'en-tête ici -->
       <p>Déclarer un problème</p>
     </div>
+    <!-- Alete lorsque l'enregistrement à bien été pousser -->
     <div class="card-body">
+        <div class="alert alert-info" role="alert" *ngIf="messageSauvegarde">
+            {{messageSauvegarde}}
+    </div> 
+
       <h5 class="card-title">Veuillez renseigner les zones suivante et soumettre votre demande</h5>
 
 
@@ -81,7 +86,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="typeProblemeId" formControlName="typeProbleme">
                 <option value=''>Merci de selectionner un type de problème.</option>
-                <option *ngFor="let cat of categoriesProbleme" [value]='cat.id'>{{cat.problemeDescription}}</option>
+                <option *ngFor="let cat of categoriesProbleme" [value]='cat.id'>{{cat.descriptionTypeProbleme}}</option>
               </select>
             </div>
           </div>
@@ -259,23 +264,23 @@
           </div>
           <!-- #endregion -->
 
+          
+          <!-- #region bouton sauvegarder -->
+          <div class="form-group row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <span>
+                <button class="btn btn-primary" type="submit" [disabled]="!problemeForm.valid" id="buttonValiderDeclarationProblemeId">
+                  <i class="fa fa-save"></i>
+                  &nbsp;&nbsp;Sauvegarder
+                </button>
+              </span>
+            </div>
+          </div>
+          <!-- #endregion bouton sauvegarder -->
+          
         </form>
       </div>
     </div>
-
-    <!-- #region bouton sauvegarder -->
-    <div class="form-group row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span>
-          <button class="btn btn-primary" type="submit" [disabled]="!problemeForm.valid" id="buttonValiderDeclarationProblemeId">
-            <i class="fa fa-save"></i>
-            &nbsp;&nbsp;Sauvegarder
-          </button>
-        </span>
-      </div>
-    </div>
-    <!-- #endregion bouton sauvegarder -->
-
   </div>
 </div>

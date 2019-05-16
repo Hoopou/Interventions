@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ZonesValidator } from '../shared/longeur-minimum/longeur-minimum.component';
-import { ICategorie } from './probleme';
+import { ICategorie } from './categorie';
 import { CategorieService } from './categorie.service';
 import { emailMatcherValidator} from '../shared/courrielValidation/courrielValidation.component';
+import { IProbleme } from './probleme';
+import { ProblemeService} from './probleme.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'stk-probleme',
@@ -14,7 +17,11 @@ export class ProblemeComponent implements OnInit {
   problemeForm: FormGroup;
   categoriesProbleme: ICategorie[];
   errorMessage: string;
-  constructor(private fb: FormBuilder, private categories: CategorieService) { }
+
+  probleme: IProbleme;
+  messageSauvegarde: string;
+
+  constructor(private fb: FormBuilder, private categories: CategorieService, private problemeService: ProblemeService) { }
 
   ngOnInit() {
     this.problemeForm = this.fb.group({
@@ -107,5 +114,27 @@ export class ProblemeComponent implements OnInit {
     courrielControl.updateValueAndValidity();
     courrielConfirmationControl.updateValueAndValidity();
     telephoneControl.updateValueAndValidity();
+  }
+
+  save(): void {
+    if (this.problemeForm.dirty && this.problemeForm.valid) {
+         this.probleme = this.problemeForm.value;
+         // Affecter les valeurs qui proviennent du fg le plus interne.
+         this.probleme.courriel =  this.problemeForm.get('courrielGroup.courriel').value;
+         this.probleme.courrielConfirmation =  this.problemeForm.get('courrielGroup.courrielConfirmation').value;      
+         this.probleme.noTypeProbleme = stringify( this.problemeForm.get('typeProbleme').value);
+         this.probleme.notification = this.problemeForm.get('typeNotification').value;
+         console.log('Jessai de save les valeurs suivantes: ' + this.probleme);
+        this.problemeService.saveprobleme(this.probleme)
+            .subscribe( // on s'abonne car on a un retour du serveur à un moment donné avec la callback fonction
+                () => this.onSaveComplete(),  // Fonction callback
+                (error: any) => this.errorMessage = <any>error
+            );
+    } 
+  }
+  
+  onSaveComplete(): void {
+    this.problemeForm.reset();  // Pour remettre Dirty à false.  Autrement le Route Guard va dire que le formulaire n'est pas sauvegardé
+    this.messageSauvegarde = 'Votre demande a bien été sauvegardée.  Nous vous remercions.';
   }
 }
