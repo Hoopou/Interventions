@@ -10,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class ProblemeService {
 
-  private baseUrl = 'https://vincentboutotinterventionslb.azurewebsites.net/api/Intervention';
+  private baseUrl = 'https://localhost:44333/api/Intervention';
 
   constructor(private _http: HttpClient) { }
 

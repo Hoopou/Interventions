@@ -1,60 +1,62 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { ProblemeComponent } from './probleme.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CategorieProbleme } from './probleme-data';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
   let fixture: ComponentFixture<ProblemeComponent>;
 
-  // beforeEach(async(() => {
-  //   TestBed.configureTestingModule({
-  //     imports: [ReactiveFormsModule, HttpClientModule],
-  //     declarations: [ ProblemeComponent ],
-  //     providers:[CategorieProbleme]
-  //   })
-  //   .compileComponents();
-  // }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, HttpClientModule],
+      declarations: [ ProblemeComponent ],
+      providers:[CategorieProbleme]
+    });
+  }));
 
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(ProblemeComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  // });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ProblemeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-  // it('champ prénom du problème doit comporter au moins 2 caractères' , () =>{
-  //   let zone = component.problemeForm.controls['prenom'];
-  //   zone.setValue('a'.repeat(2))
-  //   expect(zone.valid).toBeFalsy();
-  // })
-  // it('champ prénom du problème doit etre valide avec 3 caracteres' , () =>{
-  //   let zone = component.problemeForm.controls['prenom'];
-  //   zone.setValue('a'.repeat(3))
-  //   expect(zone.valid).toBeTruthy();
-  // })
-  // it('champ prénom du problème doit etre valide avec 200 caracteres' , () =>{
-  //   let zone = component.problemeForm.controls['prenom'];
-  //   zone.setValue('a'.repeat(200))
-  //   expect(zone.valid).toBeTruthy();
-  // })
-  // it('champ prénom du problème doit comporter au moins 2 caractères' , () =>{
-  //   let zone = component.problemeForm.controls['prenom'];
-  //   zone.setValue(' ')
-  //   expect(zone.valid).toBeFalsy();
-  // })
-  // it('champ prénom du problème doit etre valide avec 10 espaces' , () =>{
-  //   let zone = component.problemeForm.controls['prenom'];
-  //   zone.setValue(' '.repeat(10))
-  //   expect(zone.valid).toBeTruthy();
-  // })
-  // it('champ prénom du problème doit etre valide avec 2 espaces et caracteres' , () =>{
-  //   let zone = component.problemeForm.controls['prenom'];
-  //   zone.setValue('  a')
-  //   expect(zone.valid).toBeTruthy();
-  // })
+  it('champ prénom du problème doit comporter au moins 2 caractères' , () =>{
+    let zone = component.problemeForm.controls['prenom'];
+    zone.setValue('a'.repeat(2));
+    expect(zone.valid).toBeFalsy();
+  })
+  it('champ prénom du problème doit etre valide avec 3 caracteres' , () =>{
+    let zone = component.problemeForm.controls['prenom'];
+    zone.setValue('a'.repeat(3))
+    expect(zone.valid).toBeTruthy();
+  })
+  it('champ prénom du problème doit etre valide avec 200 caracteres' , () =>{
+    let zone = component.problemeForm.controls['prenom'];
+    zone.setValue('a'.repeat(200))
+    expect(zone.valid).toBeTruthy();
+  })
+  it('champ prénom du problème doit comporter au moins 2 caractères' , () =>{
+    let zone = component.problemeForm.controls['prenom'];
+    zone.setValue(' ')
+    expect(zone.valid).toBeFalsy();
+  })
+  it('champ prénom du problème doit etre valide avec 10 espaces' , () =>{
+    let zone = component.problemeForm.controls['prenom'];
+    zone.setValue(' '.repeat(10))
+    expect(zone.valid).toBeTruthy();
+  })
+  it('champ prénom du problème doit etre valide avec 2 espaces et caracteres' , () =>{
+    let zone = component.problemeForm.controls['prenom'];
+    zone.setValue('  a')
+    expect(zone.valid).toBeTruthy();
+  })
 
   it('zone courriel, telephone et confirmation courriel désactivé si ne pas notifier ' , () =>{
       component.gestionNotification('nePasNotifier');
@@ -72,6 +74,8 @@ describe('ProblemeComponent', () => {
 
   it('zone courrielGroup, couriel et courriel confirmation activer si notification est par courriel' , () =>{
     component.gestionNotification('parCourriel');
+    let notif = component.problemeForm.controls['typeNotification'];
+    notif.setValue('parCourriel');
     let testCourrielGroup = component.problemeForm.get('courrielGroup');
     let testCourriel = component.problemeForm.get('courrielGroup.courriel');
     let testCourrielConfirmation = component.problemeForm.get('courrielGroup.courrielConfirmation');

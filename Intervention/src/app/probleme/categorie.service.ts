@@ -9,7 +9,9 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class CategorieService {
 
-  private URLDonnees = 'https://vincentboutotinterventionslb.azurewebsites.net/api/intervention';
+  // private URLDonnees = 'https://vincentboutotinterventionslb.azurewebsites.net/api/intervention';
+  private URLDonnees = 'https://localhost:44333/api/intervention';
+
   constructor(private http: HttpClient) { }
 
 obtenirCategories(): Observable<ICategorie[]> {

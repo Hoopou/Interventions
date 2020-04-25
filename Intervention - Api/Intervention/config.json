@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "InterventionConnection": "Server=localhost;Database=Problemes;Trusted_Connection=True;MultipleActiveResultSets=true",
+    "InterventionConnectionAzure": "Server=tcp:vincentboutot-donees-interventions.database.windows.net,1433;Initial Catalog=InterventionsDonnees;Persist Security Info=False;User ID=Administrateur;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }
+}
